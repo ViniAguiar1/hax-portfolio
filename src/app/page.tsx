@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } => from 'react';
 import { motion } from 'framer-motion';
 import {
     FaReact,
@@ -99,226 +99,103 @@ const Home: React.FC = () => {
         { name: 'Skills', href: '#skills' },
         { name: 'Experiência', href: '#experience' },
         { name: 'Formação', href: '#education' },
-        { name: 'Contato', href: '#contact' }
     ];
 
     return (
-        <div
-            className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-800'}`}
-        >
-            {/* Navbar */}
-            <nav className={`fixed top-0 w-full shadow-md p-4 z-10 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-                <div className="container mx-auto flex justify-between items-center">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+            <header className="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-md">
+                <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-                        <span className={`text-2xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Vinicius Aguiar</span>
+                        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Portfólio</h1>
                     </motion.div>
-                    <div className="flex items-center space-x-4">
-                        <div className="hidden md:flex space-x-4">
+                    <nav>
+                        <ul className="flex space-x-4">
                             {navLinks.map((link) => (
-                                <a
-                                    key={link.name}
-                                    href={link.href}
-                                    className={`transition duration-200 ${darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'}`}
-                                >
-                                    {link.name}
-                                </a>
+                                <motion.li key={link.name} variants={listItem}>
+                                    <a
+                                        href={link.href}
+                                        className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition duration-300"
+                                    >
+                                        {link.name}
+                                    </a>
+                                </motion.li>
                             ))}
-                        </div>
-                        <button
-                            onClick={toggleDarkMode}
-                            className={`p-2 rounded-full transition ${darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
-                            aria-label="Toggle theme"
-                        >
-                            {darkMode ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-600" />}
-                        </button>
+                            <button
+                                onClick={toggleDarkMode}
+                                className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition duration-300"
+                                aria-label="Toggle dark mode"
+                            >
+                                {darkMode ? <FaSun className="w-6 h-6" /> : <FaMoon className="w-6 h-6" />}
+                            </button>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            <main className="container mx-auto px-4 py-8">
+                {/* Hero Section */}
+                <motion.section id="hero" variants={fadeIn} initial="initial" animate="animate" className="text-center py-16">
+                    <h2 className="text-4xl font-extrabold mb-4">Olá, eu sou um Desenvolvedor.</h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-400">Especialista em Frontend e UX, com foco em performance e novas tecnologias.</p>
+                </motion.section>
+
+                {/* Skills Section */}
+                <motion.section id="skills" variants={fadeIn} initial="initial" animate="animate" className="py-8">
+                    <h2 className="text-3xl font-bold mb-6 border-b pb-2">Skills</h2>
+                    <div className="flex justify-center space-x-6 text-4xl">
+                        <FaReact className="text-blue-500" />
+                        <FaNode className="text-green-600" />
+                        <FaPython className="text-yellow-600" />
+                        <FaAws className="text-orange-500" />
+                        <FaFigma className="text-purple-500" />
                     </div>
+                </motion.section>
+
+                {/* Experience Section */}
+                <motion.section id="experience" variants={stagger} initial="initial" animate="animate" className="py-8">
+                    <h2 className="text-3xl font-bold mb-6 border-b pb-2">Experiência Profissional</h2>
+                    <div className="space-y-6">
+                        {experiences.map((exp) => (
+                            <motion.div key={exp.id} variants={listItem} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transition duration-300">
+                                <h3 className="text-xl font-semibold">{exp.role}</h3>
+                                <p className="text-gray-600 dark:text-gray-400">{exp.company}</p>
+                                <p className="text-sm text-gray-500 dark:text-gray-500 flex items-center">
+                                    <FaCalendarAlt className="mr-2" /> {exp.duration}
+                                </p>
+                                <p className="mt-2">{exp.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.section>
+
+                {/* Education Section */}
+                <motion.section id="education" variants={stagger} initial="initial" animate="animate" className="py-8">
+                    <h2 className="text-3xl font-bold mb-6 border-b pb-2">Formação</h2>
+                    <div className="space-y-6">
+                        {educations.map((edu) => (
+                             <motion.div key={edu.id} variants={listItem} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transition duration-300">
+                                <h3 className="text-xl font-semibold">{edu.course}</h3>
+                                <p className="text-gray-600 dark:text-gray-400">{edu.institution}</p>
+                                <p className="text-sm text-gray-500 dark:text-gray-500 flex items-center">
+                                    <FaGraduationCap className="mr-2" /> {edu.duration}
+                                </p>
+                                <p className="mt-2">{edu.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.section>
+
+            </main>
+
+            <footer className="bg-white dark:bg-gray-800 shadow-md mt-8">
+                <div className="container mx-auto px-4 py-6 text-center text-gray-600 dark:text-gray-400">
+                    <div className="flex justify-center space-x-4 mb-4">
+                        <span className="flex items-center"><FaEnvelope className="mr-2" /> contato@email.com</span>
+                        <span className="flex items-center"><FaPhone className="mr-2" /> (11) 98765-4321</span>
+                        <span className="flex items-center"><FaMapMarkerAlt className="mr-2" /> São Paulo, Brasil</span>
+                    </div>
+                    <p>&copy; 2025 Portfólio. Todos os direitos reservados.</p>
                 </div>
-            </nav>
-
-            {/* Hero Section - Refined Two-Column Layout */}
-            <motion.header
-                id="hero"
-                className={`flex items-center justify-center min-h-screen text-center md:text-left p-4 pt-20 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'}`}
-                {...fadeIn}
-            >
-                <div className="container mx-auto flex flex-col md:flex-row items-center gap-10">
-                    {/* Left Column: Text Introduction */}
-                    <motion.div
-                        className="md:w-3/5"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
-                            Olá, eu sou <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>Vinicius Aguiar</span>
-                        </h1>
-                        <h2 className={`text-2xl mb-4 border-b pb-2 ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
-                            Frontend & UX Specialist
-                        </h2>
-                        <p className={`text-lg mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                            Elevando a experiência do usuário com soluções profissionais de alta performance. Formado em Análise e
-                            Desenvolvimento de Sistemas e com MBA em Engenharia de Software com IA pela Full Cycle.
-                        </p>
-                        <button className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition shadow-lg">
-                            Download CV
-                        </button>
-                    </motion.div>
-
-                    {/* Right Column: Placeholder Image/Avatar */}
-                    <motion.div
-                        className="md:w-2/5 flex justify-center"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                    >
-                        <div className={`rounded-full w-64 h-64 flex items-center justify-center shadow-xl ${darkMode ? 'bg-gray-700' : 'bg-gray-300'}`}>
-                            <span className={`text-8xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>👤</span>
-                        </div>
-                    </motion.div>
-                </div>
-            </motion.header>
-
-            {/* Skills Section */}
-            <motion.section
-                id="skills"
-                className={`p-10 md:p-20 shadow-lg ${darkMode ? 'bg-gray-900' : 'bg-white'}`}
-                initial="initial"
-                whileInView="animate"
-                variants={stagger}
-                viewport={{ once: true, amount: 0.3 }}
-            >
-                <h3 className="text-3xl font-bold mb-8 text-center border-b-2 border-blue-500 pb-2">
-                    Tech Stack Profissional
-                </h3>
-                <motion.div className="flex flex-wrap justify-center gap-8 text-center">
-                    <motion.div variants={listItem} className="flex flex-col items-center">
-                        <FaReact className="text-6xl text-blue-500 mb-3" />
-                        <span className="text-lg font-semibold">React/Next.js</span>
-                    </motion.div>
-                    <motion.div variants={listItem} className="flex flex-col items-center">
-                        <FaNode className="text-6xl text-green-600 mb-3" />
-                        <span className="text-lg font-semibold">Node.js</span>
-                    </motion.div>
-                    <motion.div variants={listItem} className="flex flex-col items-center">
-                        <FaPython className="text-6xl text-yellow-600 mb-3" />
-                        <span className="text-lg font-semibold">Python</span>
-                    </motion.div>
-                    <motion.div variants={listItem} className="flex flex-col items-center">
-                        <FaAws className={`text-6xl mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`} />
-                        <span className="text-lg font-semibold">AWS</span>
-                    </motion.div>
-                    <motion.div variants={listItem} className="flex flex-col items-center">
-                        <FaFigma className="text-6xl text-purple-500 mb-3" />
-                        <span className="text-lg font-semibold">Figma & UX</span>
-                    </motion.div>
-                </motion.div>
-            </motion.section>
-
-            {/* Experience Section */}
-            <motion.section
-                id="experience"
-                className={`p-10 md:p-20 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}
-                initial="initial"
-                whileInView="animate"
-                variants={stagger}
-                viewport={{ once: true, amount: 0.3 }}
-            >
-                <h3 className="text-3xl font-bold mb-8 text-center border-b-2 border-blue-500 pb-2">
-                    Experiência Profissional
-                </h3>
-                <div className="space-y-8">
-                    {experiences.map((exp) => (
-                        <motion.div
-                            key={exp.id}
-                            variants={listItem}
-                            className={`p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ${darkMode ? 'bg-gray-700' : 'bg-white'}`}
-                        >
-                            <h4 className={`text-2xl font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{exp.role}</h4>
-                            <p className={`font-medium ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{exp.company}</p>
-                            <p className={`text-sm mb-4 flex items-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                <FaCalendarAlt className="mr-2" />
-                                {exp.duration}
-                            </p>
-                            <p className={darkMode ? 'text-gray-200' : 'text-gray-700'}>{exp.description}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </motion.section>
-
-            {/* Education Section */}
-            <motion.section
-                id="education"
-                className={`p-10 md:p-20 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}
-                initial="initial"
-                whileInView="animate"
-                variants={stagger}
-                viewport={{ once: true, amount: 0.3 }}
-            >
-                <h3 className="text-3xl font-bold mb-8 text-center border-b-2 border-blue-500 pb-2">
-                    Formação Acadêmica
-                </h3>
-                <div className="space-y-8">
-                    {educations.map((edu) => (
-                        <motion.div
-                            key={edu.id}
-                            variants={listItem}
-                            className={`p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}
-                        >
-                            <h4 className={`text-2xl font-semibold flex items-center ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-                                <FaGraduationCap className="mr-3" />
-                                {edu.course}
-                            </h4>
-                            <p className={`font-medium mt-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{edu.institution}</p>
-                            <p className={`text-sm mb-4 flex items-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                                <FaCalendarAlt className="mr-2" />
-                                {edu.duration}
-                            </p>
-                            <p className={darkMode ? 'text-gray-200' : 'text-gray-700'}>{edu.description}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </motion.section>
-
-            {/* Contact Section */}
-            <motion.section
-                id="contact"
-                className={`p-10 md:p-20 text-white text-center shadow-inner ${darkMode ? 'bg-gray-900' : 'bg-gray-800'}`}
-                {...fadeIn}
-            >
-                <h3 className="text-3xl font-bold mb-4">Pronto para o próximo desafio.</h3>
-                <p className="text-lg mb-6 text-gray-400">Entre em contato para colaborações ou oportunidades.</p>
-                <div className="flex justify-center gap-6 mt-4 text-3xl">
-                    <motion.a
-                        href="#"
-                        whileHover={{ scale: 1.1 }}
-                        className="text-gray-400 hover:text-blue-400 transition duration-200"
-                        aria-label="Email"
-                    >
-                        <FaEnvelope />
-                    </motion.a>
-                    <motion.a
-                        href="#"
-                        whileHover={{ scale: 1.1 }}
-                        className="text-gray-400 hover:text-blue-400 transition duration-200"
-                        aria-label="Phone"
-                    >
-                        <FaPhone />
-                    </motion.a>
-                    <motion.a
-                        href="#"
-                        whileHover={{ scale: 1.1 }}
-                        className="text-gray-400 hover:text-blue-400 transition duration-200"
-                        aria-label="Location"
-                    >
-                        <FaMapMarkerAlt />
-                    </motion.a>
-                </div>
-            </motion.section>
-
-            <footer
-                className={`p-4 text-center border-t ${darkMode ? 'text-gray-400 bg-gray-800 border-gray-700' : 'text-gray-600 bg-white border-gray-200'}`}
-            >
-                <p>© {new Date().getFullYear()} Vinicius Aguiar. Desenvolvido com Next.js e Tailwind CSS.</p>
             </footer>
             <SupportButton />
         </div>
