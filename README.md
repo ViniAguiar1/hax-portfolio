@@ -1,31 +1,41 @@
-# Portfolio Project
+# My Next.js Application
 
-This project is a personal portfolio application built with **Next.js**, **React**, and **Tailwind CSS**. It features a responsive design, dark and light mode support, and sections for professional experience, education, skills, and a newly added projects list.
+This project (`my-next-app`) is a robust application built with **Next.js**.
 
-## Features
+## Project Structure
 
-*   **Dark/Light Mode:** Automatic theme detection and manual toggle.
-*   **Framer Motion:** Smooth animations and transitions.
-*   **Professional Sections:** Experience, Education, and Skills overview.
-*   **Projects List:** A dedicated component (`ProjectsList.tsx`) integrated into the main page (`page.tsx`) to showcase past projects.
+The project follows the standard Next.js structure:
+
+- `src/`: Contains the main application source code.
+    - `app/`: (If applicable) Pages and routing using the App Router.
+    - `components/`: Reusable React components.
+    - `styles/`: Global styles.
+- `public/`: Static assets such as images and fonts.
+- `node_modules/`: Project dependencies.
+- `package.json`: Project dependencies and scripts.
+- `next.config.ts`, `tsconfig.json`: Next.js and TypeScript configuration.
 
 ## Getting Started
 
-First, install the dependencies and run the development server:
+To run the project locally:
 
-```bash
-npm install
-npm run dev
-# or
-yarn install
-yarn dev
-```
+1.  Navigate to the project directory:
+    ```bash
+    cd my-next-app
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    # or yarn install
+    ```
+3.  Run the development server:
+    ```bash
+    npm run dev
+    # or yarn dev
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Project Structure
-The new `ProjectsList` component is located in `src/components/ProjectsList.tsx` and integrated into `src/app/page.tsx`.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the [Next.js Documentation](https://nextjs.org/docs).
+For more information on Next.js, check the [Next.js Documentation](https://nextjs.org/docs).
